@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Estudiante - ISEA</title>
+  <link rel="stylesheet" href="formulario.css">
+  <link rel="shortcut icon" href="IMAGENES/ISEA-removebg-preview (1).png" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <header>
+    <div id="header-container">
+      <img src="IMAGENES/ISEAblanca-sin-fondo.png" id="logoalumno" alt="Logo ISEA">
+      <div class="text-container">
+        <h1>Registro de Estudiante</h1>
+      </div>
+      <nav>
+        <ul class="menu">
+          <li><a href="ISEA.html">Atrás</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="DatosEstudiantes">
+    <div class="container">
+      <div class="photo-upload-container">
+        <img id="fotoEstudiante" src="./IMAGENES/usuarioooo.png" alt="Foto del estudiante">
+        <div class="file-upload">
+          <label for="foto" class="file-upload-btn">📸 Seleccionar Foto</label>
+          <input type="file" id="foto" name="foto" accept="image/*" required>
+        </div>
+      </div>
+
+      <form action="registro_estudiante.php" method="post" enctype="multipart/form-data" id="studentForm">
+        <h2>Información Personal</h2>
+
+        <label>Primer Nombre</label>
+        <input type="text" name="primer_nombre" required>
+
+        <label>Segundo Nombre</label>
+        <input type="text" name="segundo_nombre">
+
+        <label>Primer Apellido</label>
+        <input type="text" name="apellido" required>
+
+        <label>Segundo Apellido</label>
+        <input type="text" name="segundo_apellido" required>
+
+        <label>Tipo de Documento</label>
+        <select name="tipo_documento" required>
+          <option value="" disabled selected>Seleccione</option>
+          <option value="CC">Cédula de Ciudadanía</option>
+          <option value="TI">Tarjeta de Identidad</option>
+          <option value="RC">Registro Civil</option>
+          <option value="CE">Cédula Extranjera</option>
+        </select>
+
+        <label>Número de Documento</label>
+        <input type="text" name="numero_documento" required>
+
+        <label>Lugar de Expedición</label>
+        <input type="text" name="lugar_expedicion" required>
+
+        <label>Fecha de Expedición</label>
+        <input type="date" name="fecha_expedicion" required>
+
+        <label>Fecha de Nacimiento</label>
+        <input type="date" name="fecha_nacimiento" required>
+
+        <label>Ciudad de Nacimiento</label>
+        <input type="text" name="ciudad_nacimiento" required>
+
+        <label>Género</label>
+        <select name="genero" required>
+          <option value="" disabled selected>Seleccione</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Otro">Otro</option>
+        </select>
+
+        <label>Celular</label>
+        <input type="tel" id="celular_estudiante" name="celular_estudiante" pattern="[0-9]{10}" maxlength="10" required>
+
+        <label>Correo Electrónico</label>
+        <input type="email" name="email_estudiante" required>
+
+        <label>Barrio de Residencia</label>
+        <input type="text" name="barrio_estudiante" required>
+
+        <label>Dirección</label>
+        <input type="text" name="direccion_estudiante" required>
+
+        <label>Grado a cursar</label>
+        <select id="grado" name="grado" required>
+          <option value="" disabled selected>Seleccione</option>
+          <option value="Prescolar">Prescolar</option>
+          <option value="1">1°</option>
+          <option value="2">2°</option>
+          <option value="3">3°</option>
+          <option value="4">4°</option>
+          <option value="5">5°</option>
+          <option value="6">6°</option>
+          <option value="7">7°</option>
+          <option value="8">8°</option>
+          <option value="9">9°</option>
+          <option value="10">10°</option>
+          <option value="11">11°</option>
+        </select>
+
+        <label>Especialidad</label>
+        <select id="especialidad" name="especialidad">
+          <option value="" disabled selected>Seleccione</option>
+          <option value="Desarrollo de Software">Desarrollo de Software</option>
+          <option value="Logística Empresarial">Logística Empresarial</option>
+          <option value="Eventos y Turismo">Eventos y Turismo</option>
+          <option value="Asistencia Administrativa">Asistencia Administrativa</option>
+          <option value="Recursos Humanos">Recursos Humanos</option>
+          <option value="Dibujo Digital">Dibujo Digital</option>
+        </select>
+
+        <h3>📄 Documentos Adicionales</h3>
+        <div class="file-upload">
+          <label for="documentos" class="file-upload-btn">📂 Seleccionar Archivos</label>
+          <input type="file" id="documentos" name="documentos[]" multiple accept=".pdf,.jpg,.png,.jpeg">
+        </div>
+
+        <br>
+        <button type="submit" id="continuarBtn">Continuar</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+  // Mostrar vista previa de la foto
+  document.getElementById("foto").addEventListener("change", function() {
+    const reader = new FileReader();
+    reader.onload = e => document.getElementById("fotoEstudiante").src = e.target.result;
+    reader.readAsDataURL(this.files[0]);
+  });
+
+  // Mostrar nombre de archivos seleccionados
+  document.getElementById("documentos").addEventListener("change", function() {
+    const nombres = Array.from(this.files).map(f => f.name).join(", ");
+    this.nextElementSibling.textContent = nombres || "Ningún archivo seleccionado";
+  });
+
+  // Habilitar especialidad solo si Grado = 10
+  const grado = document.getElementById("grado");
+  const especialidad = document.getElementById("especialidad");
+  especialidad.disabled = true;
+  especialidad.style.opacity = "0.5";
+
+  grado.addEventListener("change", function() {
+    if (this.value === "10") {
+      especialidad.disabled = false;
+      especialidad.style.opacity = "1";
+    } else {
+      especialidad.disabled = true;
+      especialidad.value = "";
+      especialidad.style.opacity = "0.5";
+    }
+  });
+  </script>
+</body>
+</html>

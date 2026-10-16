@@ -1,0 +1,54 @@
+
+<?php
+session_start();
+include 'conexion.php';
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESTIÓN DE MATRÍCULAS DE ISEA</title>
+    <link rel="shortcut icon" href="IMAGENES/ISEA-removebg-preview (1).png" type="image/x-icon">
+    <link rel="stylesheet" href="panel estudiante.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div id="header-container">
+            <img src="IMAGENES/ISEAblanca-sin-fondo.png" id="logo" alt="Logo ISEA">
+            <h1>Bienvenido Alumno</h1>
+            <nav>
+                <ul class="menu">
+
+                    <li><a href="cerrar.php">Cerrar Sesion</a></li>
+                </ul>
+                      
+            </nav>
+        </div>
+    </header><br>
+
+
+
+    <div class="container">
+        <aside class="sidebar">  
+           <h2><?php echo $_SESSION['nombre']; ?></h2>
+
+            <img src="IMAGENES/SIB FOFNSO (1).png" alt="logo">
+        </aside><br>
+
+    
+        <div class="button-grid"><br>
+            <button onclick="window.location.href='renovacion_matricula.html'">Renovación de Matrícula</button><br>
+            <button onclick="window.location.href='hoja_de_vida.php'">Hoja de Vida</button><br>
+            <button onclick="window.location.href='cancelacion de matricula.html'">Cancelación de Matrícula</button>
+        </div>
+
+    
+    
+    </div>
+
+    <
+</body>
+</html>

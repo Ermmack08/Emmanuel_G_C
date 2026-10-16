@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio de sesion</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="iniciar.css">
+
+</head>
+<body>
+
+    <header>
+        <div id="header-container">
+            <img src="IMAGENES/ISEAblanca-sin-fondo.png" id="logo" alt="Logo ISEA">
+            <h1 id="titulo">¿Quien Accede?</h1>
+            <nav>
+                <ul class="menu">
+                    <li><a href="ISEA.html">Atras</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+<main>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="inicio_admin.php" method="post">
+			<h1>Secretaría</h1>
+			<span>Use su usuario y contraseña</span>
+			<input type="text" name="user" placeholder="Usuario" required/>
+			<input type="email" name="email" placeholder="E-mail" required/>
+			<input type="password" name="password" placeholder="Contraseña" required/>
+			<button type="submit" name="inicio">INICAR SESIÓN</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="inicio estudiante.php" method="post">
+			<h1>Estudiante</h1>
+			<span>Use su documento y contraseña</span>
+			<input type="text" name="documento" placeholder="Documento" />
+			<input type="password" name="password" placeholder="Contraseña" />
+			<a href="registro estudiante.html">¿Ya te matriculaste?</a>
+			<button type="submit" name="iniciar">INICAR SESIÓN</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>¡Bienvenido!</h1>
+				<p>Use su informacion personal para inicar sesión</p>
+				<button class="ghost" id="signIn">Estudiante</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>¡Bienvenido!</h1>
+				<p>Use su informacion personal para inicar sesión</p>
+				<button class="ghost" id="signUp">Secretaría</button>
+			</div>
+		</div>
+	</div>
+</div>
+</main>
+
+</body>
+<script  src="iniciar.js"></script>
+</html>
